@@ -1,0 +1,10 @@
+{
+  "requestCount": 0,
+  "request200Count": 0,
+  "request4XXCount": 0,
+  "request5XXCount": 0,
+  "totalResponseTimeMillis": 0,
+  "avgResponseTimeMillis": 0,
+  "minResponseTimeMillis": 9223372036854776000,
+  "maxResponseTimeMillis": -9223372036854776000
+}
