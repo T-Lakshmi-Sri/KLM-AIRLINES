@@ -1,6 +1,17 @@
 AirPort Search for KLM AIRLINES 
 ===============================
 
+
+## AIRPORTSERACKLM
+
+It is a bundles SpringBoot application along with Angular7 
+
+URL to access SpringBoot bundled application is http://localhost:8880/travel/index.html
+
+To access the url please refer below
+
+================================
+
 In Order to retrieve the endpoint service-mock-api needs to be started. Below are the steps to start mock-servive-api
 
 [![Build Status](https://drone.io/bitbucket.org/afklmdevnet/simple-travel-api-mock/status.png)](https://drone.io/bitbucket.org/afklmdevnet/simple-travel-api-mock/latest)
@@ -55,13 +66,22 @@ Query params:
 This project fetches airport details and after selection of specific origin and destination user will be able to fetch fare.
 
 
-# MyApp
+# MyApp -- Angular7 application
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+After running command `ng serve` user can be able to access the below URL
+
+http://localhost:4200/airlines
+
+
+
+
+
 
  
 
