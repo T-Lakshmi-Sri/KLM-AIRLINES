@@ -1,0 +1,65 @@
+<div class="airlinemain container">
+
+<div>
+  <div class="airlinebuttons">
+    <button class="btn btn mr-1 btn-primary" value='Search' (click)="navigateToSearch()">Search</button>
+
+    <button class="btn btn btn-warning" value='Statics' (click)="navigateToStatistics()">Statistics</button>
+  </div>
+</div>
+
+  <form class="example-form">
+    <div class="example-container">
+      <mat-form-field class="example-full-width">
+        <span>Origin</span>
+        <input type="text" class="origin" aria-label="origin" matInput [formControl]="myControl" (change)="getOrgin()"
+               [matAutocomplete]="auto1">
+        <mat-autocomplete class="airlinemat" #auto1="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of filteredOptions" [value]="option">
+            {{option.code}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="example-container">
+      <mat-form-field class="example-full-width-dest">
+        <span>Destination</span>
+        <input type="text" class="origin" aria-label="destination" matInput [formControl]="myDestControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete class="destmat" #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let optionItem of filteredOptions2" [value]="optionItem">
+            {{optionItem.code}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+    </div>
+
+    <button class="btn btn btn-primary btn-danger" (click)="findDeal()">Find Deal</button>
+  </form>
+
+
+  <div
+    class="airLineFare" *ngIf="airLineFareData">
+    <div class="airLineFareSpace">
+
+      <div class="airline-info pull-left">
+        KLM AIRLINES
+      </div>
+      <div class="airline-info pull-left">
+        {{originCode}}
+      </div>
+      <div class="airline-info pull-left">
+        {{destCode}}
+      </div>
+      <div class="airline-info pull-left">
+        {{airlineFare + airlineCurrency}}
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

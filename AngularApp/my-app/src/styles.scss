@@ -1,0 +1,166 @@
+/* You can add global styles to this file, and also import other style files */
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+  margin-bottom: -17px;
+}
+
+.example-full-width-dest {
+  width: 100%;
+  margin-top: -18px;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: row;
+  display: inline-flex;
+  max-width: 52%;
+  padding: 7%;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  margin-left: 100%;
+  margin-top: -136px
+}
+
+mat-autocomplete {
+  height: 30px;
+}
+
+.btn-warning {
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+.origin {
+  height: 34px;
+  margin-left: 20px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff !important;
+  background-image: none;
+  border: 1px solid #ccc !important;
+  border-radius: 4px;
+}
+
+#airlines {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#airlines td, #airlines th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#airlines tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#airlines tr:hover {
+  background-color: #ddd;
+}
+
+#airlines th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: cadetblue;
+  color: white;
+}
+
+.airLineFare {
+  background: #fff;
+  width: 880px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, .1);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, .1);
+  border: 1px solid #d8eaff;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.airLineFareSpace {
+  padding: 20px 10px 10px;
+}
+
+.airline-info {
+  width: 195px;
+  padding-right: 5px;
+  margin-top: -22px;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.airlinemain {
+  margin: 20px 10px 10px;
+  padding: 20px 10px 10px;
+
+}
+
+.statistics {
+  margin-top: -38px;
+  margin-left: 234px;
+}
+
+.airlinemat {
+  left: 230px;
+  top: -78px;
+}
+
+.destmat {
+  left: 486px;
+  top: -78px;
+}
+
+.airlinebuttons {
+  margin-left: 35px;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+  color: cadetblue;
+}
+
+.statistic {
+  margin-top: 24px
+}
