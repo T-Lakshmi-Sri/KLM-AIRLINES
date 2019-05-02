@@ -44,12 +44,13 @@ var AirlineDataService = /** @class */ (function () {
         this.http = http;
         this.configUrl = '/travel/getAirportDetails';
         this.retrieveFareURL = '/travel/getFare';
-        this.statisticsUrl = 'assets/statistics.json';
+        this.statisticsUrl = 'travel/actuator/metrics/http.server.requests';
     }
     AirlineDataService.prototype.getConfig = function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'text/plain' });
         return this.http.get(this.configUrl, { responseType: 'text', headers: headers });
     };
+    // Will be implemented once statistics is done
     AirlineDataService.prototype.getStatistics = function () {
         return this.http.get(this.statisticsUrl);
     };
@@ -145,11 +146,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _server_server_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./server/server.component */ "./src/app/server/server.component.ts");
-/* harmony import */ var _withdraw_withdraw_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./withdraw/withdraw.component */ "./src/app/withdraw/withdraw.component.ts");
-/* harmony import */ var _klm_klm_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./klm/klm.component */ "./src/app/klm/klm.component.ts");
-/* harmony import */ var _pipes_airline_data_pipe__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pipes/airline-data.pipe */ "./src/app/pipes/airline-data.pipe.ts");
-/* harmony import */ var _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./statistics/statistics.component */ "./src/app/statistics/statistics.component.ts");
+/* harmony import */ var _klm_klm_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./klm/klm.component */ "./src/app/klm/klm.component.ts");
+/* harmony import */ var _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./statistics/statistics.component */ "./src/app/statistics/statistics.component.ts");
 
 
 
@@ -164,16 +162,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-/*const appRoutes: Routes = [
-  {path: '', component: KlmComponent},
-  {path: 'airlines', component: KlmComponent},
-  {path: 'statistics', component: StatisticsComponent}];*/
 var appRoutes = [
     { path: 'statistics',
-        component: _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_15__["StatisticsComponent"],
+        component: _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_12__["StatisticsComponent"],
         children: [
             {
                 path: 'statistics',
@@ -181,17 +172,17 @@ var appRoutes = [
             },
             {
                 path: 'statistics',
-                component: _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_15__["StatisticsComponent"]
+                component: _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_12__["StatisticsComponent"]
             },
             {
                 path: 'travel/statistics',
-                component: _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_15__["StatisticsComponent"]
+                component: _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_12__["StatisticsComponent"]
             },
         ]
     },
     {
         path: '',
-        component: _klm_klm_component__WEBPACK_IMPORTED_MODULE_13__["KlmComponent"],
+        component: _klm_klm_component__WEBPACK_IMPORTED_MODULE_11__["KlmComponent"],
         children: [
             {
                 path: 'travel',
@@ -209,11 +200,11 @@ var appRoutes = [
             },
             {
                 path: 'travel/airlines',
-                component: _klm_klm_component__WEBPACK_IMPORTED_MODULE_13__["KlmComponent"]
+                component: _klm_klm_component__WEBPACK_IMPORTED_MODULE_11__["KlmComponent"]
             },
             {
                 path: 'airlines',
-                component: _klm_klm_component__WEBPACK_IMPORTED_MODULE_13__["KlmComponent"]
+                component: _klm_klm_component__WEBPACK_IMPORTED_MODULE_11__["KlmComponent"]
             },
         ]
     }
@@ -225,11 +216,8 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"],
-                _server_server_component__WEBPACK_IMPORTED_MODULE_11__["ServerComponent"],
-                _withdraw_withdraw_component__WEBPACK_IMPORTED_MODULE_12__["WithdrawComponent"],
-                _klm_klm_component__WEBPACK_IMPORTED_MODULE_13__["KlmComponent"],
-                _pipes_airline_data_pipe__WEBPACK_IMPORTED_MODULE_14__["AirlineDataPipe"],
-                _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_15__["StatisticsComponent"]
+                _klm_klm_component__WEBPACK_IMPORTED_MODULE_11__["KlmComponent"],
+                _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_12__["StatisticsComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -395,121 +383,6 @@ var KlmComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pipes/airline-data.pipe.ts":
-/*!********************************************!*\
-  !*** ./src/app/pipes/airline-data.pipe.ts ***!
-  \********************************************/
-/*! exports provided: AirlineDataPipe */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AirlineDataPipe", function() { return AirlineDataPipe; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-var AirlineDataPipe = /** @class */ (function () {
-    function AirlineDataPipe() {
-    }
-    AirlineDataPipe.prototype.transform = function (items, searchText) {
-        if (!items) {
-            return [];
-        }
-        if (!searchText) {
-            return items;
-        }
-        else {
-            searchText = searchText.toLowerCase();
-            return items.filter(function (it) {
-                return it.toLowerCase().includes(searchText);
-            });
-        }
-    };
-    AirlineDataPipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
-            name: 'airlineData'
-        })
-    ], AirlineDataPipe);
-    return AirlineDataPipe;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/server/server.component.html":
-/*!**********************************************!*\
-  !*** ./src/app/server/server.component.html ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  server works!\n</p>\n\n\n<button ngClass=\"btn btn-primary\" [disabled]=\"serverActive\" (click)=\"getActiveServer()\">Submit</button>\n\n<div>\n  <input type=\"text\" id=\"name\" #Somename>Name:\n\n</div>\n\n\n<div *ngFor=\"let server of serverList\">\n  {{server}}\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/server/server.component.scss":
-/*!**********************************************!*\
-  !*** ./src/app/server/server.component.scss ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NlcnZlci9zZXJ2ZXIuY29tcG9uZW50LnNjc3MifQ== */"
-
-/***/ }),
-
-/***/ "./src/app/server/server.component.ts":
-/*!********************************************!*\
-  !*** ./src/app/server/server.component.ts ***!
-  \********************************************/
-/*! exports provided: ServerComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServerComponent", function() { return ServerComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-var ServerComponent = /** @class */ (function () {
-    function ServerComponent() {
-        this.serverActive = false;
-        this.serverList = ['testServer', 'testServer1', 'testServer2'];
-    }
-    ServerComponent.prototype.ngOnInit = function () {
-        alert('Hi');
-    };
-    ServerComponent.prototype.getActiveServer = function () {
-        var serverNumber = 1;
-        serverNumber = serverNumber + 1;
-        this.serverList.push('server' + serverNumber);
-        // alert(name);
-        alert(this.Somename.nativeElement.value);
-        // this.serverActive = true;
-        console.log(this.Somename.nativeElement.value);
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('Somename'),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], ServerComponent.prototype, "Somename", void 0);
-    ServerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-server',
-            template: __webpack_require__(/*! ./server.component.html */ "./src/app/server/server.component.html"),
-            styles: [__webpack_require__(/*! ./server.component.scss */ "./src/app/server/server.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], ServerComponent);
-    return ServerComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/statistics/statistics.component.html":
 /*!******************************************************!*\
   !*** ./src/app/statistics/statistics.component.html ***!
@@ -517,7 +390,7 @@ var ServerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"statistic\">\n\n<div class=\"container\">\n<div>\n  <button class=\"btn btn btn-primary mr-1\" value='Search' (click)=\"navigateToSearch()\">Search</button>\n  <button class=\"btn btn btn-warning\" value='Statics' (click)=\"navigateToStatistics()\">Statistics</button>\n</div>\n<table class=\"statistic\" id=\"airlines\">\n  <th>Statistics</th>\n  <th>StatisticData</th>\n  <tr>\n    <td>RequestCount</td>\n    <td>\n      {{0}}\n    </td>\n  </tr>\n  \n  <tr>\n    \n    <td>Request200Count</td>\n    <td>\n      {{0}}\n    </td>\n  </tr>\n  \n  <tr>\n<td>Request4XXCount</td>\n    <td>\n      {{0}}\n    </td>\n  </tr>\n  \n  <tr>\n<td>Request5XXCount</td>\n    <td>\n      {{0}}\n    </td>\n  </tr>\n  \n  <tr>\n<td>TotalResponseTimeMillis</td>\n    <td>\n      {{9223372036854776000}}\n    </td>\n  </tr>\n  \n  <tr>\n<td>AvgResponseTimeMillis</td>\n    <td>\n      {{9223372036854776000}}\n    </td>\n  </tr>\n\n  <tr>\n    <td>MinResponseTimeMillis</td>\n    <td>\n      {{9223372036854776000}}\n    </td>\n  </tr>\n  <tr>\n    <td>MaxResponseTimeMillis</td>\n    <td>\n      {{9223372036854776000}}\n    </td>\n  </tr>\n\n</table>\n</div>\n</div>\n"
+module.exports = "<div class=\"statistic\">\n\n<div class=\"container\">\n<div>\n  <button class=\"btn btn btn-primary mr-1\" value='Search' (click)=\"navigateToSearch()\">Search</button>\n  <button class=\"btn btn btn-warning\" value='Statics' (click)=\"navigateToStatistics()\">Statistics</button>\n</div>\n<table class=\"statistic\" id=\"airlines\">\n  <th>Statistics</th>\n  <th>StatisticData</th>\n  <tr>\n    <td>RequestCount</td>\n    <td>\n      {{requestCount}}\n    </td>\n  </tr>\n  \n  <tr>\n    \n    <td>Request200Count</td>\n    <td>\n      {{request200Count}}\n    </td>\n  </tr>\n  \n  <tr>\n<td>Request4XXCount</td>\n    <td>\n      {{request4XXCount}}\n    </td>\n  </tr>\n  \n  <tr>\n<td>Request5XXCount</td>\n    <td>\n      {{request5XXCount}}\n    </td>\n  </tr>\n  \n  <tr>\n<td>TotalResponseTimeMillis</td>\n    <td>\n      {{totalResponseTimeMillis}}\n    </td>\n  </tr>\n  \n  <tr>\n<td>AvgResponseTimeMillis</td>\n    <td>\n      {{avgRequestTime}}\n    </td>\n  </tr>\n\n  <tr>\n    <td>MinResponseTimeMillis</td>\n    <td>\n      {{minRequestTime}}\n    </td>\n  </tr>\n  <tr>\n    <td>MaxResponseTimeMillis</td>\n    <td>\n      {{maxResponseTimeMillis}}\n    </td>\n  </tr>\n\n</table>\n</div>\n</div>\n"
 
 /***/ }),
 
@@ -560,8 +433,30 @@ var StatisticsComponent = /** @class */ (function () {
         this.airlineDataService.getStatistics()
             .subscribe(function (data) {
             if (data) {
+                _this.requestCount200Values = [];
+                _this.request4XXCountValues = [];
+                _this.request5XXCountValues = [];
                 _this.statisticData = data;
                 _this.showTable = true;
+                _this.requestCount = data.availableTags[4].values.length;
+                _this.totalResponseTimeMillis = data.measurements[1].value;
+                _this.maxResponseTimeMillis = data.measurements[2].value;
+                _this.requestCountValues = data.availableTags[4].values;
+                for (var i = 0; i < _this.requestCountValues.length; i++) {
+                    if (_this.requestCountValues[i] >= 200 && _this.requestCountValues[i] < 400) {
+                        _this.requestCount200Values.push(_this.requestCountValues[i]);
+                    }
+                    if (_this.requestCountValues[i] >= 400 && _this.requestCountValues[i] < 500) {
+                        _this.request4XXCountValues.push(_this.requestCountValues[i]);
+                    }
+                    if (_this.requestCountValues[i] >= 500) {
+                        _this.request5XXCountValues.push(_this.requestCountValues[i]);
+                    }
+                }
+                _this.request200Count = _this.requestCount200Values.length;
+                _this.request4XXCount = _this.request4XXCountValues.length;
+                _this.request5XXCount = _this.request5XXCountValues.length;
+                _this.avgRequestTime = _this.totalResponseTimeMillis / 2;
             }
         });
     };
@@ -580,73 +475,6 @@ var StatisticsComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_airlineData_airline_data_service__WEBPACK_IMPORTED_MODULE_2__["AirlineDataService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], StatisticsComponent);
     return StatisticsComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/withdraw/withdraw.component.html":
-/*!**************************************************!*\
-  !*** ./src/app/withdraw/withdraw.component.html ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  withdraw works!\n</p>\n"
-
-/***/ }),
-
-/***/ "./src/app/withdraw/withdraw.component.scss":
-/*!**************************************************!*\
-  !*** ./src/app/withdraw/withdraw.component.scss ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3dpdGhkcmF3L3dpdGhkcmF3LmNvbXBvbmVudC5zY3NzIn0= */"
-
-/***/ }),
-
-/***/ "./src/app/withdraw/withdraw.component.ts":
-/*!************************************************!*\
-  !*** ./src/app/withdraw/withdraw.component.ts ***!
-  \************************************************/
-/*! exports provided: WithdrawComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WithdrawComponent", function() { return WithdrawComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-var WithdrawComponent = /** @class */ (function () {
-    function WithdrawComponent() {
-        this.myName = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-    }
-    WithdrawComponent.prototype.ngOnInit = function () {
-        this.myName.emit('Lakshmi');
-        console.log(this.title);
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], WithdrawComponent.prototype, "myName", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], WithdrawComponent.prototype, "title", void 0);
-    WithdrawComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-withdraw',
-            template: __webpack_require__(/*! ./withdraw.component.html */ "./src/app/withdraw/withdraw.component.html"),
-            styles: [__webpack_require__(/*! ./withdraw.component.scss */ "./src/app/withdraw/withdraw.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], WithdrawComponent);
-    return WithdrawComponent;
 }());
 
 

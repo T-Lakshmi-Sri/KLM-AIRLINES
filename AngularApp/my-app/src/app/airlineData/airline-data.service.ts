@@ -11,7 +11,7 @@ export class AirlineDataService {
 
   configUrl = '/travel/getAirportDetails';
   retrieveFareURL = '/travel/getFare';
-  statisticsUrl = 'assets/statistics.json';
+  statisticsUrl = 'travel/actuator/metrics/http.server.requests';
 
     getConfig() {
     const headers = new HttpHeaders({ 'Content-Type': 'text/plain'});

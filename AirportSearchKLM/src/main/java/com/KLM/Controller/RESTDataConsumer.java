@@ -39,14 +39,10 @@ public class RESTDataConsumer {
 	private String airportsUrl;
 	
 	
-	//private volatile String token;
 	
 	public  ResponseEntity<FareDetails>  fetchFairDetails (String token,String source,String destination,String currency) {
 		
-		
-		
 		RestTemplate restTemplate=new  RestTemplate();
-		
 	
 		String url = simpleTravelFareUrl+source+"/"+destination;
 
@@ -109,14 +105,9 @@ public  ResponseEntity<String>  fetchAirportDetails (String token,String size,St
 		if(!StringUtils.isEmpty(term)) {
 			uriBuilder.queryParam("term", term);
 		}
-          
-               
-					
-	    
+           
 		ResponseEntity<String> res = restTemplate.exchange(uriBuilder.toUriString(), HttpMethod.GET, entity, String.class);
-		
-		System.out.println("response is "+res.getBody().toString());
-		
+				
 		return res;
 		
 	}
@@ -126,9 +117,7 @@ public  ResponseEntity<String>  fetchAirportDetails (String token,String size,St
 public  ResponseEntity<String>  fetchAirportByCode (String token,String code,String lang) {
 	
 	
-	
 	RestTemplate restTemplate=new  RestTemplate();
-	
 
 	String url = airportsUrl+"/"+code;
 	System.out.println("url is "+url);
@@ -144,13 +133,7 @@ public  ResponseEntity<String>  fetchAirportByCode (String token,String code,Str
 	if(!StringUtils.isEmpty(lang)) {
 		uriBuilder.queryParam("lang", lang);
 	}
-	
-      	
-    
 	ResponseEntity<String> res = restTemplate.exchange(uriBuilder.toUriString(), HttpMethod.GET, entity, String.class);
-	
-	System.out.println("response is "+res.getBody().toString());
-	
 	return res;
 	
 }

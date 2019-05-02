@@ -25,16 +25,19 @@ public class FetchDetailsController {
 	public SimpleTravelApiAuth apiAuth;
 	@Autowired
 	public RESTDataConsumer restData;
-
+	
 	String token="test";
 	@RequestMapping(method=RequestMethod.GET,value="/getFare/{source}/{destination}")
 	public ResponseEntity<FareDetails>  fetchFareDetails(@PathVariable String source,@PathVariable String destination,@RequestParam(required = false,name="currency")  String currency ) throws UnirestException {
+		
+		
+
 		token=apiAuth.getToken();
 		ResponseEntity<FareDetails> resp=restData.fetchFairDetails(token,source,destination,currency);
 		return resp;
-
+		
 	}
-
+	
 	@RequestMapping(method=RequestMethod.GET,value="/getAirportDetails")
 	public ResponseEntity<String>  fetchAirportDetails(
 			@RequestParam(required = false,name="size") String size,
@@ -42,20 +45,20 @@ public class FetchDetailsController {
 			@RequestParam(required = false,name="lang") String lang,
 			@RequestParam(required = false,name="term") String term
 			) throws UnirestException {
-
+		
 
 		token=apiAuth.getToken();
 		ResponseEntity<String> resp=restData.fetchAirportDetails(token,size,page,lang,term);
 		return resp;
-
+		
 	}
-
+	
 	@RequestMapping(method=RequestMethod.GET,value="/getAirport/{code}")
 	public ResponseEntity<String>  fetchAirportByCode(@PathVariable String code,@RequestParam(required = false,name="lang")  String lang ) throws UnirestException {
-
+		
 		token=apiAuth.getToken();
 		ResponseEntity<String> resp=restData.fetchAirportByCode(token,code,lang);
 		return resp;
-
+		
 	}
 }
