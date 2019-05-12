@@ -42,21 +42,14 @@ __webpack_require__.r(__webpack_exports__);
 var AirlineDataService = /** @class */ (function () {
     function AirlineDataService(http) {
         this.http = http;
-        this.configUrl = '/travel/getAirportDetails';
+        this.airportDetailsUrl = '/travel/getAirportDetails';
         this.retrieveFareURL = '/travel/getFare';
-        this.statisticsUrl = 'travel/actuator/metrics/http.server.requests';
     }
-    AirlineDataService.prototype.getConfig = function () {
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'text/plain' });
-        return this.http.get(this.configUrl, { responseType: 'text', headers: headers });
-    };
-    // Will be implemented once statistics is done
-    AirlineDataService.prototype.getStatistics = function () {
-        return this.http.get(this.statisticsUrl);
+    AirlineDataService.prototype.getAirLineData = function () {
+        return this.http.get(this.airportDetailsUrl);
     };
     AirlineDataService.prototype.retrieveFare = function (originCode, destCode) {
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'text/plain' });
-        return this.http.get(this.retrieveFareURL + '/' + originCode + '/' + destCode, { responseType: 'text', headers: headers });
+        return this.http.get(this.retrieveFareURL + '/' + originCode + '/' + destCode);
     };
     AirlineDataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -78,7 +71,7 @@ var AirlineDataService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n\n  <div class=\"header\">\n    <h1>\n      Welcome to {{ title }}\n    </h1>\n  </div>\n\n</div>\n\n<router-outlet></router-outlet>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n\n  <div class=\"header\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n\n</div>\n\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -109,7 +102,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = 'KLM AIRLINES';
+        this.title = 'Welcome to KLM AIRLINES';
     }
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -163,21 +156,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var appRoutes = [
-    { path: 'statistics',
+    {
+        path: 'statistics',
         component: _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_12__["StatisticsComponent"],
         children: [
+            {
+                path: 'travel',
+                pathMatch: 'prefix',
+                redirectTo: 'statistics'
+            },
             {
                 path: 'statistics',
                 redirectTo: 'travel/statistics'
             },
             {
-                path: 'statistics',
-                component: _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_12__["StatisticsComponent"]
-            },
-            {
                 path: 'travel/statistics',
                 component: _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_12__["StatisticsComponent"]
             },
+            {
+                path: 'statistics',
+                component: _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_12__["StatisticsComponent"]
+            }
         ]
     },
     {
@@ -187,11 +186,6 @@ var appRoutes = [
             {
                 path: 'travel',
                 pathMatch: 'prefix',
-                redirectTo: 'airlines'
-            },
-            {
-                path: '',
-                pathMatch: 'full',
                 redirectTo: 'airlines'
             },
             {
@@ -217,7 +211,7 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"],
                 _klm_klm_component__WEBPACK_IMPORTED_MODULE_11__["KlmComponent"],
-                _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_12__["StatisticsComponent"]
+                _statistics_statistics_component__WEBPACK_IMPORTED_MODULE_12__["StatisticsComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -242,6 +236,44 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/contentData/content-data.service.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/contentData/content-data.service.ts ***!
+  \*****************************************************/
+/*! exports provided: ContentDataService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContentDataService", function() { return ContentDataService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+var ContentDataService = /** @class */ (function () {
+    function ContentDataService(http) {
+        this.http = http;
+        this.contentURL = 'travel/assets/content.json';
+    }
+    ContentDataService.prototype.getContent = function () {
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'text/plain' });
+        return this.http.get(this.contentURL, { responseType: 'text', headers: headers });
+    };
+    ContentDataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], ContentDataService);
+    return ContentDataService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/klm/klm.component.html":
 /*!****************************************!*\
   !*** ./src/app/klm/klm.component.html ***!
@@ -249,7 +281,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"airlinemain container\">\r\n\r\n<div>\r\n  <div class=\"airlinebuttons\">\r\n    <button class=\"btn btn mr-1 btn-primary\" value='Search' (click)=\"navigateToSearch()\">Search</button>\r\n\r\n    <button class=\"btn btn btn-warning\" value='Statics' (click)=\"navigateToStatistics()\">Statistics</button>\r\n  </div>\r\n</div>\r\n\r\n  <form class=\"example-form\">\r\n    <div class=\"example-container\">\r\n      <mat-form-field class=\"example-full-width\">\r\n        <span>Origin</span>\r\n        <input type=\"text\" class=\"origin\" aria-label=\"origin\" matInput [formControl]=\"myControl\" (change)=\"getOrgin()\"\r\n               [matAutocomplete]=\"auto1\">\r\n        <mat-autocomplete class=\"airlinemat\" #auto1=\"matAutocomplete\" [displayWith]=\"displayFn\">\r\n          <mat-option *ngFor=\"let option of filteredOptions\" [value]=\"option\">\r\n            {{option.code}}\r\n          </mat-option>\r\n        </mat-autocomplete>\r\n      </mat-form-field>\r\n    </div>\r\n\r\n    <div class=\"example-container\">\r\n      <mat-form-field class=\"example-full-width-dest\">\r\n        <span>Destination</span>\r\n        <input type=\"text\" class=\"origin\" aria-label=\"destination\" matInput [formControl]=\"myDestControl\"\r\n               [matAutocomplete]=\"auto\">\r\n        <mat-autocomplete class=\"destmat\" #auto=\"matAutocomplete\" [displayWith]=\"displayFn\">\r\n          <mat-option *ngFor=\"let optionItem of filteredOptions2\" [value]=\"optionItem\">\r\n            {{optionItem.code}}\r\n          </mat-option>\r\n        </mat-autocomplete>\r\n      </mat-form-field>\r\n\r\n    </div>\r\n\r\n    <button class=\"btn btn btn-primary btn-danger\" (click)=\"findDeal()\">Find Deal</button>\r\n  </form>\r\n\r\n\r\n  <div\r\n    class=\"airLineFare\" *ngIf=\"airLineFareData\">\r\n    <div class=\"airLineFareSpace\">\r\n\r\n      <div class=\"airline-info pull-left\">\r\n        KLM AIRLINES\r\n      </div>\r\n      <div class=\"airline-info pull-left\">\r\n        {{originCode}}\r\n      </div>\r\n      <div class=\"airline-info pull-left\">\r\n        {{destCode}}\r\n      </div>\r\n      <div class=\"airline-info pull-left\">\r\n        {{airlineFare + airlineCurrency}}\r\n      </div>\r\n\r\n    </div>\r\n\r\n  </div>\r\n\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"container\" *ngIf=\"content\">\r\n  <div class=\"row airline-navigation\">\r\n    <div>\r\n      <button class=\"btn mr-1 btn-primary\" value='Search' (click)=\"navigateToSearch()\">{{content.search}}</button>\r\n    </div>\r\n    <div>\r\n      <button class=\"btn btn-warning\" value='Statics' (click)=\"navigateToStatistics()\">{{content.statisticData}}</button>\r\n    </div>\r\n  </div>\r\n  <div>\r\n    <form>\r\n      <div class=\"row airline-details\">\r\n        <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\r\n          <mat-form-field>\r\n            <span>{{content.origin}}</span>\r\n            <input type=\"text\" class=\"origin\" aria-label=\"origin\" matInput [formControl]=\"myOriginControl\"\r\n                   (click)=\"getAirlineDataFare()\"\r\n                   [matAutocomplete]=\"auto1\">\r\n            <mat-autocomplete class=\"originOptions\" #auto1=\"matAutocomplete\" [displayWith]=\"displayFn\">\r\n              <mat-option *ngFor=\"let option of originOptions\" [value]=\"option\">\r\n                {{option.code}}-{{option.name}}\r\n              </mat-option>\r\n            </mat-autocomplete>\r\n          </mat-form-field>\r\n        </div>\r\n\r\n        <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\r\n          <mat-form-field>\r\n            <span>{{content.destination}}</span>\r\n            <input type=\"text\" class=\"destination\" aria-label=\"destination\" matInput\r\n                   [formControl]=\"myDestinationControl\"\r\n                   (click)=\"getAirlineDataFare()\"\r\n                   [matAutocomplete]=\"auto\">\r\n            <mat-autocomplete class=\"destinationOptions\" #auto=\"matAutocomplete\" [displayWith]=\"displayFn\">\r\n              <mat-option *ngFor=\"let optionItem of destinationOptions\" [value]=\"optionItem\">\r\n                {{optionItem.code}}-{{optionItem.name}}\r\n              </mat-option>\r\n            </mat-autocomplete>\r\n          </mat-form-field>\r\n\r\n        </div>\r\n        <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\r\n          <button class=\"btn btn-danger deal\" (click)=\"findDeal()\">{{content.findDeal}}</button>\r\n        </div>\r\n      </div>\r\n\r\n    </form>\r\n\r\n\r\n  </div>\r\n  <div class=\"airline-fare\" *ngIf=\"airLineFareData\">\r\n\r\n    <table id=\"airlines\">\r\n      <th>\r\n        {{content.heading}}\r\n      </th>\r\n      <th>\r\n        {{content.originCode}}\r\n      </th>\r\n      <th>\r\n        {{content.destCode}}\r\n      </th>\r\n      <th>\r\n        Fare\r\n      </th>\r\n      <tr>\r\n        <td>\r\n          KLM AIRLINES\r\n        </td>\r\n        <td>\r\n          {{originCode}}\r\n        </td>\r\n        <td>\r\n          {{destCode}}\r\n        </td>\r\n        <td>\r\n          {{airlineFare + airlineCurrency}}\r\n        </td>\r\n      </tr>\r\n\r\n    </table>\r\n\r\n  </div>\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -277,9 +309,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _airlineData_airline_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../airlineData/airline-data.service */ "./src/app/airlineData/airline-data.service.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _airlineData_airline_data_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../airlineData/airline-data.service */ "./src/app/airlineData/airline-data.service.ts");
+/* harmony import */ var _contentData_content_data_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../contentData/content-data.service */ "./src/app/contentData/content-data.service.ts");
+
 
 
 
@@ -287,80 +321,104 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var KlmComponent = /** @class */ (function () {
-    function KlmComponent(airlineDataService, router) {
+    function KlmComponent(airlineDataService, contentDataService, router) {
         this.airlineDataService = airlineDataService;
+        this.contentDataService = contentDataService;
         this.router = router;
-        this.myControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
-        this.myDestControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
-        this.airlineData = [];
+        this.myOriginControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
+        this.myDestinationControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
     }
     KlmComponent.prototype.displayFn = function (user) {
         return user ? user.name : undefined;
     };
     KlmComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.filteredOptions = [];
-        this.filteredOptions2 = [];
-        this.showConfig();
-        this.myControl.valueChanges
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (value) { return typeof value === 'string' ? value : value.code; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (code) { return code ? _this.oringinfilter(code) : _this.filteredOptions.slice(); })).subscribe(function (response) {
-            _this.filteredOptions = response;
-        });
-        this.filteredOptions = [];
-        this.myDestControl.valueChanges
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (value) { return typeof value === 'string' ? value : value.code; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (code) { return code ? _this.destfilter(code) : _this.filteredOptions2.slice(); })).subscribe(function (response) {
-            _this.filteredOptions2 = response;
-        });
+        this.getContentData();
+        this.originOptions = [];
+        this.destinationOptions = [];
+        this.showAirlineData();
+        this.myOriginControl.valueChanges
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) { return typeof value === 'string' ? value : value.code; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (code) { return code ? _this.originFilter(code) : _this.originOptions.slice(); })).subscribe(function (response) {
+            _this.originOptions = response;
+        }, function (error) { return _this.error = error; });
+        this.originOptions = [];
+        this.myDestinationControl.valueChanges
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) { return typeof value === 'string' ? value : value.code; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (code) { return code ? _this.destinationFilter(code) : _this.destinationOptions.slice(); })).subscribe(function (response) {
+            _this.destinationOptions = response;
+        }, function (error) { return _this.error = error; });
     };
-    KlmComponent.prototype.destfilter = function (code) {
+    KlmComponent.prototype.destinationFilter = function (code) {
         this.airLineFareData = false;
         var filterValue = code.toLowerCase();
         this.destCode = code;
-        return this.initialOptions.filter(function (option) { return option.code.toLowerCase().indexOf(filterValue) === 0; });
+        return this.initialOptions.filter(function (option) {
+            return option.code.toLowerCase().indexOf(filterValue) === 0 || option.name.toLowerCase().indexOf(filterValue) === 0;
+        });
     };
-    KlmComponent.prototype.oringinfilter = function (code) {
+    KlmComponent.prototype.originFilter = function (code) {
         var filterValue = code.toLowerCase();
         this.airLineFareData = false;
         this.originCode = code;
-        return this.initialOptions.filter(function (option) { return option.code.toLowerCase().indexOf(filterValue) === 0; });
-    };
-    KlmComponent.prototype.showConfig = function () {
-        var _this = this;
-        this.filteredOptions = [];
-        this.initialOptions = [];
-        this.airlineDataService.getConfig()
-            .subscribe(function (data) {
-            var airLineDataValue = JSON.parse(data);
-            _this.filteredOptions = airLineDataValue._embedded.locations;
-            _this.filteredOptions2 = airLineDataValue._embedded.locations;
-            _this.initialOptions = _this.filteredOptions;
+        return this.initialOptions.filter(function (option) {
+            return option.code.toLowerCase().indexOf(filterValue) === 0 || option.name.toLowerCase().indexOf(filterValue) === 0;
         });
+    };
+    KlmComponent.prototype.getContentData = function () {
+        var _this = this;
+        this.contentDataService.getContent()
+            .subscribe(function (data) {
+            if (data) {
+                _this.content = JSON.parse(data);
+            }
+        }, function (error) { return _this.error = error; });
+    };
+    KlmComponent.prototype.showAirlineData = function () {
+        var _this = this;
+        this.originOptions = [];
+        this.initialOptions = [];
+        this.airlineDataService.getAirLineData()
+            .subscribe(function (data) {
+            var airLineDataValue = data;
+            _this.originOptions = airLineDataValue._embedded.locations;
+            _this.destinationOptions = airLineDataValue._embedded.locations;
+            _this.initialOptions = _this.originOptions;
+        }, function (error) { return _this.error = error; });
     };
     KlmComponent.prototype.findDeal = function () {
         var _this = this;
-        if (this.originCode) {
-            // validation
-        }
-        else {
-            alert('Please Select Origin value');
-        }
-        if (this.destCode) {
-            // validation
-        }
-        else {
-            alert('Please select Destination value');
-        }
-        if (this.originCode && this.destCode) {
+        this.findDealValidations();
+        if (this.airLineFareValid) {
             this.airlineDataService.retrieveFare(this.originCode, this.destCode)
                 .subscribe(function (data) {
                 if (data) {
-                    var airLineFaredata = JSON.parse(data);
-                    _this.airlineFare = airLineFaredata.amount;
-                    _this.airlineCurrency = airLineFaredata.currency;
+                    var airLineFareData = data;
+                    _this.airlineFare = airLineFareData.amount;
+                    _this.airlineCurrency = airLineFareData.currency;
                     _this.airLineFareData = true;
                 }
-            });
+            }, function (error) { return _this.error = error; });
         }
+    };
+    KlmComponent.prototype.findDealValidations = function () {
+        if (this.originCode) {
+            if (this.destCode) {
+                if (this.originCode !== this.destCode) {
+                    this.airLineFareValid = true;
+                }
+                else {
+                    alert('Please select different destination from origin');
+                }
+            }
+            else {
+                alert('Please select Destination');
+            }
+        }
+        else {
+            alert('Please select Origin');
+        }
+    };
+    KlmComponent.prototype.getAirlineDataFare = function () {
+        this.airLineFareData = false;
     };
     KlmComponent.prototype.navigateToStatistics = function () {
         this.router.navigate(['statistics']);
@@ -374,9 +432,46 @@ var KlmComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./klm.component.html */ "./src/app/klm/klm.component.html"),
             styles: [__webpack_require__(/*! ./klm.component.scss */ "./src/app/klm/klm.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_airlineData_airline_data_service__WEBPACK_IMPORTED_MODULE_3__["AirlineDataService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_airlineData_airline_data_service__WEBPACK_IMPORTED_MODULE_5__["AirlineDataService"], _contentData_content_data_service__WEBPACK_IMPORTED_MODULE_6__["ContentDataService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], KlmComponent);
     return KlmComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/statisticData/statistic-data.service.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/statisticData/statistic-data.service.ts ***!
+  \*********************************************************/
+/*! exports provided: StatisticDataService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StatisticDataService", function() { return StatisticDataService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+var StatisticDataService = /** @class */ (function () {
+    function StatisticDataService(http) {
+        this.http = http;
+        this.statisticsUrl = '/travel/getStatisticData';
+    }
+    StatisticDataService.prototype.getStatistics = function () {
+        return this.http.get(this.statisticsUrl);
+    };
+    StatisticDataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], StatisticDataService);
+    return StatisticDataService;
 }());
 
 
@@ -390,7 +485,7 @@ var KlmComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"statistic\">\n\n<div class=\"container\">\n<div>\n  <button class=\"btn btn btn-primary mr-1\" value='Search' (click)=\"navigateToSearch()\">Search</button>\n  <button class=\"btn btn btn-warning\" value='Statics' (click)=\"navigateToStatistics()\">Statistics</button>\n</div>\n<table class=\"statistic\" id=\"airlines\">\n  <th>Statistics</th>\n  <th>StatisticData</th>\n  <tr>\n    <td>RequestCount</td>\n    <td>\n      {{requestCount}}\n    </td>\n  </tr>\n  \n  <tr>\n    \n    <td>Request200Count</td>\n    <td>\n      {{request200Count}}\n    </td>\n  </tr>\n  \n  <tr>\n<td>Request4XXCount</td>\n    <td>\n      {{request4XXCount}}\n    </td>\n  </tr>\n  \n  <tr>\n<td>Request5XXCount</td>\n    <td>\n      {{request5XXCount}}\n    </td>\n  </tr>\n  \n  <tr>\n<td>TotalResponseTimeMillis</td>\n    <td>\n      {{totalResponseTimeMillis}}\n    </td>\n  </tr>\n  \n  <tr>\n<td>AvgResponseTimeMillis</td>\n    <td>\n      {{avgRequestTime}}\n    </td>\n  </tr>\n\n  <tr>\n    <td>MinResponseTimeMillis</td>\n    <td>\n      {{minRequestTime}}\n    </td>\n  </tr>\n  <tr>\n    <td>MaxResponseTimeMillis</td>\n    <td>\n      {{maxResponseTimeMillis}}\n    </td>\n  </tr>\n\n</table>\n</div>\n</div>\n"
+module.exports = "<div class=\"statistic\" *ngIf=\"content\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div>\n        <button class=\"btn mr-1 btn-primary\" value='Search' (click)=\"navigateToSearch()\">{{content.search}}</button>\n      </div>\n      <div>\n        <button class=\"btn btn-warning\" value='Statistics'\n                (click)=\"navigateToStatistics()\">{{content.statisticData}}</button>\n      </div>\n    </div>\n    <table class=\"statistic\" id=\"statisticData\">\n      <th>{{content.statisticData}}</th>\n      <th>{{content.values}}</th>\n      <tr>\n        <td>{{content.requestCount}}</td>\n        <td>\n          {{requestCount}}\n        </td>\n      </tr>\n      <tr>\n        <td>{{content.request200Count}}</td>\n        <td>\n          {{request200Count}}\n        </td>\n      </tr>\n\n      <tr>\n        <td>{{content.request4XXCount}}</td>\n        <td>\n          {{request4XXCount}}\n        </td>\n      </tr>\n\n      <tr>\n        <td>{{content.request5XXCount}}</td>\n        <td>\n          {{request5XXCount}}\n        </td>\n      </tr>\n\n      <tr>\n        <td>{{content.totalResponseTimeMillis}}</td>\n        <td>\n          {{totalResponseTimeMillis}}\n        </td>\n      </tr>\n\n      <tr>\n        <td>{{content.avgRequestTime}}</td>\n        <td>\n          {{avgRequestTime}}\n        </td>\n      </tr>\n\n      <tr>\n        <td>{{content.minRequestTime}}</td>\n        <td>\n          {{minRequestTime}}\n        </td>\n      </tr>\n      <tr>\n        <td>{{content.maxResponseTimeMillis}}</td>\n        <td>\n          {{maxResponseTimeMillis}}\n        </td>\n      </tr>\n\n    </table>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -417,20 +512,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StatisticsComponent", function() { return StatisticsComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _airlineData_airline_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../airlineData/airline-data.service */ "./src/app/airlineData/airline-data.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _statisticData_statistic_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../statisticData/statistic-data.service */ "./src/app/statisticData/statistic-data.service.ts");
+/* harmony import */ var _contentData_content_data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../contentData/content-data.service */ "./src/app/contentData/content-data.service.ts");
+
 
 
 
 
 var StatisticsComponent = /** @class */ (function () {
-    function StatisticsComponent(airlineDataService, router) {
-        this.airlineDataService = airlineDataService;
+    function StatisticsComponent(statisticDataService, contentDataService, router) {
+        this.statisticDataService = statisticDataService;
+        this.contentDataService = contentDataService;
         this.router = router;
+        this.getContentData();
     }
     StatisticsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.airlineDataService.getStatistics()
+        this.statisticDataService.getStatistics()
             .subscribe(function (data) {
             if (data) {
                 _this.requestCount200Values = [];
@@ -438,9 +537,10 @@ var StatisticsComponent = /** @class */ (function () {
                 _this.request5XXCountValues = [];
                 _this.statisticData = data;
                 _this.showTable = true;
-                _this.requestCount = data.availableTags[4].values.length;
+                _this.requestCount = data.measurements[0].value;
                 _this.totalResponseTimeMillis = data.measurements[1].value;
                 _this.maxResponseTimeMillis = data.measurements[2].value;
+                _this.minRequestTime = -_this.maxResponseTimeMillis;
                 _this.requestCountValues = data.availableTags[4].values;
                 for (var i = 0; i < _this.requestCountValues.length; i++) {
                     if (_this.requestCountValues[i] >= 200 && _this.requestCountValues[i] < 400) {
@@ -458,7 +558,16 @@ var StatisticsComponent = /** @class */ (function () {
                 _this.request5XXCount = _this.request5XXCountValues.length;
                 _this.avgRequestTime = _this.totalResponseTimeMillis / 2;
             }
-        });
+        }, function (error) { return _this.error = error; });
+    };
+    StatisticsComponent.prototype.getContentData = function () {
+        var _this = this;
+        this.contentDataService.getContent()
+            .subscribe(function (data) {
+            if (data) {
+                _this.content = JSON.parse(data);
+            }
+        }, function (error) { return _this.error = error; });
     };
     StatisticsComponent.prototype.navigateToStatistics = function () {
         this.router.navigate(['statistics']);
@@ -472,7 +581,7 @@ var StatisticsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./statistics.component.html */ "./src/app/statistics/statistics.component.html"),
             styles: [__webpack_require__(/*! ./statistics.component.scss */ "./src/app/statistics/statistics.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_airlineData_airline_data_service__WEBPACK_IMPORTED_MODULE_2__["AirlineDataService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_statisticData_statistic_data_service__WEBPACK_IMPORTED_MODULE_3__["StatisticDataService"], _contentData_content_data_service__WEBPACK_IMPORTED_MODULE_4__["ContentDataService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], StatisticsComponent);
     return StatisticsComponent;
 }());

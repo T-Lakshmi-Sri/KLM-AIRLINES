@@ -1,69 +1,71 @@
-<div class="statistic">
+<div class="statistic" *ngIf="content">
+  <div class="container">
+    <div class="row">
+      <div>
+        <button class="btn mr-1 btn-primary" value='Search' (click)="navigateToSearch()">{{content.search}}</button>
+      </div>
+      <div>
+        <button class="btn btn-warning" value='Statistics'
+                (click)="navigateToStatistics()">{{content.statisticData}}</button>
+      </div>
+    </div>
+    <table class="statistic" id="statisticData">
+      <th>{{content.statisticData}}</th>
+      <th>{{content.values}}</th>
+      <tr>
+        <td>{{content.requestCount}}</td>
+        <td>
+          {{requestCount}}
+        </td>
+      </tr>
+      <tr>
+        <td>{{content.request200Count}}</td>
+        <td>
+          {{request200Count}}
+        </td>
+      </tr>
 
-<div class="container">
-<div>
-  <button class="btn btn btn-primary mr-1" value='Search' (click)="navigateToSearch()">Search</button>
-  <button class="btn btn btn-warning" value='Statics' (click)="navigateToStatistics()">Statistics</button>
-</div>
-<table class="statistic" id="airlines">
-  <th>Statistics</th>
-  <th>StatisticData</th>
-  <tr>
-    <td>RequestCount</td>
-    <td>
-      {{requestCount}}
-    </td>
-  </tr>
-  
-  <tr>
-    
-    <td>Request200Count</td>
-    <td>
-      {{request200Count}}
-    </td>
-  </tr>
-  
-  <tr>
-<td>Request4XXCount</td>
-    <td>
-      {{request4XXCount}}
-    </td>
-  </tr>
-  
-  <tr>
-<td>Request5XXCount</td>
-    <td>
-      {{request5XXCount}}
-    </td>
-  </tr>
-  
-  <tr>
-<td>TotalResponseTimeMillis</td>
-    <td>
-      {{totalResponseTimeMillis}}
-    </td>
-  </tr>
-  
-  <tr>
-<td>AvgResponseTimeMillis</td>
-    <td>
-      {{avgRequestTime}}
-    </td>
-  </tr>
+      <tr>
+        <td>{{content.request4XXCount}}</td>
+        <td>
+          {{request4XXCount}}
+        </td>
+      </tr>
 
-  <tr>
-    <td>MinResponseTimeMillis</td>
-    <td>
-      {{minRequestTime}}
-    </td>
-  </tr>
-  <tr>
-    <td>MaxResponseTimeMillis</td>
-    <td>
-      {{maxResponseTimeMillis}}
-    </td>
-  </tr>
+      <tr>
+        <td>{{content.request5XXCount}}</td>
+        <td>
+          {{request5XXCount}}
+        </td>
+      </tr>
 
-</table>
-</div>
+      <tr>
+        <td>{{content.totalResponseTimeMillis}}</td>
+        <td>
+          {{totalResponseTimeMillis}}
+        </td>
+      </tr>
+
+      <tr>
+        <td>{{content.avgRequestTime}}</td>
+        <td>
+          {{avgRequestTime}}
+        </td>
+      </tr>
+
+      <tr>
+        <td>{{content.minRequestTime}}</td>
+        <td>
+          {{minRequestTime}}
+        </td>
+      </tr>
+      <tr>
+        <td>{{content.maxResponseTimeMillis}}</td>
+        <td>
+          {{maxResponseTimeMillis}}
+        </td>
+      </tr>
+
+    </table>
+  </div>
 </div>

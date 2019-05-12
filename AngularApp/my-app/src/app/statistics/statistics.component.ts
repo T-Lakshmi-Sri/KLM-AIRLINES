@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AirlineDataService} from '../airlineData/airline-data.service';
 import {Router} from '@angular/router';
+import {StatisticDataService} from '../statisticData/statistic-data.service';
+import {ContentDataService} from '../contentData/content-data.service';
 
 @Component({
   selector: 'app-statistics',
@@ -21,13 +22,16 @@ export class StatisticsComponent implements OnInit {
   request4XXCount: any;
   request5XXCount: any;
   avgRequestTime: any;
-  minRequestTime: 0;
+  minRequestTime: number;
+  content: any;
+  error: 'Please try again';
 
-  constructor(private airlineDataService: AirlineDataService, private router: Router) {
+  constructor(private statisticDataService: StatisticDataService, private contentDataService: ContentDataService, private router: Router) {
+    this.getContentData();
   }
 
   ngOnInit() {
-    this.airlineDataService.getStatistics()
+    this.statisticDataService.getStatistics()
       .subscribe((data: any) => {
         if (data) {
           this.requestCount200Values = [];
@@ -35,18 +39,19 @@ export class StatisticsComponent implements OnInit {
           this.request5XXCountValues = [];
           this.statisticData = data;
           this.showTable = true;
-          this.requestCount = data.availableTags[4].values.length;
+          this.requestCount = data.measurements[0].value;
           this.totalResponseTimeMillis = data.measurements[1].value;
           this.maxResponseTimeMillis = data.measurements[2].value;
+          this.minRequestTime = -this.maxResponseTimeMillis;
           this.requestCountValues = data.availableTags[4].values;
           for (let i = 0; i < this.requestCountValues.length; i++) {
-            if (this.requestCountValues[i] >= 200 && this.requestCountValues[i] < 400 ) {
+            if (this.requestCountValues[i] >= 200 && this.requestCountValues[i] < 400) {
               this.requestCount200Values.push(this.requestCountValues[i]);
             }
-            if (this.requestCountValues[i] >= 400 && this.requestCountValues[i] < 500 ) {
-                this.request4XXCountValues.push(this.requestCountValues[i]);
+            if (this.requestCountValues[i] >= 400 && this.requestCountValues[i] < 500) {
+              this.request4XXCountValues.push(this.requestCountValues[i]);
             }
-            if (this.requestCountValues[i] >= 500 ) {
+            if (this.requestCountValues[i] >= 500) {
               this.request5XXCountValues.push(this.requestCountValues[i]);
             }
           }
@@ -55,7 +60,17 @@ export class StatisticsComponent implements OnInit {
           this.request5XXCount = this.request5XXCountValues.length;
           this.avgRequestTime = this.totalResponseTimeMillis / 2;
         }
-      });
+      },
+        error => this.error = error);
+  }
+
+  getContentData() {
+    this.contentDataService.getContent()
+      .subscribe((data: any) => {
+        if (data) {
+          this.content = data;
+        }
+      },  error => this.error = error);
   }
 
   navigateToStatistics() {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
@@ -9,22 +9,16 @@ export class AirlineDataService {
   constructor(private http: HttpClient) {
   }
 
-  configUrl = '/travel/getAirportDetails';
+  airportDetailsUrl = '/travel/getAirportDetails';
   retrieveFareURL = '/travel/getFare';
-  statisticsUrl = 'travel/actuator/metrics/http.server.requests';
 
-    getConfig() {
-    const headers = new HttpHeaders({ 'Content-Type': 'text/plain'});
-    return this.http.get(this.configUrl, {responseType: 'text', headers});
+  getAirLineData<T>() {
+    return this.http.get<T>(this.airportDetailsUrl);
   }
 
-  // Will be implemented once statistics is done
-  getStatistics() {
-    return this.http.get(this.statisticsUrl);
+  retrieveFare<T>(originCode, destCode) {
+    return this.http.get<T>(this.retrieveFareURL + '/' + originCode + '/' + destCode);
   }
 
-  retrieveFare(originCode, destCode) {
-    const headers = new HttpHeaders({ 'Content-Type': 'text/plain'});
-    return this.http.get(this.retrieveFareURL + '/' + originCode + '/' + destCode , {responseType: 'text', headers});
-  }
+
 }

@@ -39,26 +39,40 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Hotspot JVM metrics -->
+		<!-- https://mvnrepository.com/artifact/org.easymock/easymock -->
 		<dependency>
-			<groupId>io.prometheus</groupId>
-			<artifactId>simpleclient_hotspot</artifactId>
-			<version>0.0.16</version>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.1</version>
+			<scope>test</scope>
 		</dependency>
-		<!-- Exposition servlet -->
+		<!-- https://mvnrepository.com/artifact/org.powermock/powermock-reflect -->
 		<dependency>
-			<groupId>io.prometheus</groupId>
-			<artifactId>simpleclient_servlet</artifactId>
-			<version>0.0.16</version>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-reflect</artifactId>
+			<version>1.6.1</version>
+			<scope>test</scope>
 		</dependency>
-		<!-- The client -->
 		<dependency>
-			<groupId>io.prometheus</groupId>
-			<artifactId>simpleclient</artifactId>
-			<version>0.0.16</version>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
 		</dependency>
 
-
+		<!-- https://mvnrepository.com/artifact/org.glassfish.hk2.external/cglib -->
+		<dependency>
+			<groupId>org.glassfish.hk2.external</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.1.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.objenesis/objenesis -->
+		<dependency>
+			<groupId>org.objenesis</groupId>
+			<artifactId>objenesis</artifactId>
+			<version>2.5</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
