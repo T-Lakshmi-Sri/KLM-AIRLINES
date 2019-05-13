@@ -14,7 +14,7 @@ public class StatisticDataTest {
 
 	private StatisticData classUnderTest;
 	private RestTemplate mockTemplate;
-	ResponseEntity<String> expect = new ResponseEntity<String>(HttpStatus.OK);
+	ResponseEntity<String> status = new ResponseEntity<String>(HttpStatus.OK);
 
 	@Before
 	public void setUp() {
@@ -25,7 +25,7 @@ public class StatisticDataTest {
 				mockTemplate = EasyMock.createMock(RestTemplate.class);
 				EasyMock.expect(mockTemplate.getForEntity(
 						"http://localhost:8880/travel/actuator/metrics/http.server.requests", String.class))
-						.andReturn(expect);
+						.andReturn(status);
 				ReflectionTestUtils.setField(classUnderTest, "statisticUrl",
 						"http://localhost:8880/travel/actuator/metrics/http.server.requests");
 				EasyMock.replay(mockTemplate);
@@ -37,7 +37,7 @@ public class StatisticDataTest {
 	@Test
 	public void fetchStatisticDataTest() {
 		ResponseEntity<String> response = classUnderTest.fetchStatisticData();
-		assertEquals(expect.getStatusCode(), response.getStatusCode());
+		assertEquals(status.getStatusCode(), response.getStatusCode());
 
 	}
 

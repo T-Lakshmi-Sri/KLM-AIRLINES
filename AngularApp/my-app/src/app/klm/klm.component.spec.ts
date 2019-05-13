@@ -4,7 +4,7 @@ import {KlmComponent} from './klm.component';
 import {MatInputModule} from '@angular/material';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AirlineDataService} from '../airlineData/airline-data.service';
-import {FormControl, ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 describe('KlmComponent', () => {
@@ -30,26 +30,5 @@ describe('KlmComponent', () => {
     fixture = TestBed.createComponent(KlmComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should retrieve airline data', () => {
-    const originControl = new FormControl('originControl');
-    fixture.componentInstance.myOriginControl = originControl;
-    const destinationControl = new FormControl('destinationControl');
-    fixture.componentInstance.myDestinationControl = destinationControl;
-    const airlineData = {
-      code: 'YOW',
-      name: 'Ottawa International',
-      description: 'Ottawa - Ottawa International (YOW), Canada',
-      coordinates: {
-        latitude: 45.32083,
-        longitude: -75.67278
-      }
-    };
-    const airlineService = jasmine.createSpyObj('AirlineDataService', ['getAirLineData']);
-    airlineService.getAirLineData.and.returnValue(airlineData);
-    component.showAirlineData();
-    fixture.detectChanges();
-    expect(component.airlineFare).toBeUndefined();
   });
 });

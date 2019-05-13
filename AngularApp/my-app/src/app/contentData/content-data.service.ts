@@ -9,7 +9,7 @@ export class ContentDataService {
   constructor(private http: HttpClient) {
   }
 
-  contentURL = 'travel/assets/content.json';
+  contentURL = 'assets/content.json';
 
   getContent<T>() {
     return this.http.get<T>(this.contentURL);
