@@ -1,6 +1,0 @@
-com/KLM/auth/ApiAuth.class
-com/KLM/auth/SimpleTravelApiAuth.class
-com/KLM/Controller/RESTDataConsumer.class
-com/KLM/Controller/FareDetails.class
-com/KLM/Controller/FetchDetailsController.class
-com/KLM/AirportSearch/App.class
