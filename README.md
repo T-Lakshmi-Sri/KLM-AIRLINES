@@ -4,7 +4,7 @@ AirPort Search for KLM AIRLINES
 
 ## AIRPORTSERACKLM
 
-It is a bundles SpringBoot application along with Angular7 
+It is a bundled project of SpringBoot and Angular7 
 
 URL to access SpringBoot bundled application is http://localhost:8880/travel/index.html
 
