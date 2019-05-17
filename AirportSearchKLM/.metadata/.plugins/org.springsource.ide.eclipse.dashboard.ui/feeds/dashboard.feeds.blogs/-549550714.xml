@@ -4,7 +4,6 @@
   <link rel="alternate" href="https://spring.io/blog" />
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
-  <icon>https://spring.io/favicon.ico</icon>
   <updated>2019-05-07T15:05:57Z</updated>
   <entry>
     <title>This Week in Spring - May 7th, 2019</title>
@@ -459,7 +458,7 @@
     <id>tag:spring.io,2019-04-19:3654</id>
     <updated>2019-04-19T19:19:11Z</updated>
     <content type="html">&lt;p&gt;&lt;strong&gt;NOTE: This is a guest post from our friends at Alibaba.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Hi! Today, we’re very excited to announce that the 0.9.0, 0.2.2, and 0.1.2 releases of Spring Cloud Alibaba are now available.&lt;/p&gt;&lt;h2&gt;&lt;a href="#release-highlight" class="anchor" name="release-highlight"&gt;&lt;/a&gt;Release Highlight&lt;/h2&gt;
+&lt;p&gt;Hi! Today, weï¿½re very excited to announce that the 0.9.0, 0.2.2, and 0.1.2 releases of Spring Cloud Alibaba are now available.&lt;/p&gt;&lt;h2&gt;&lt;a href="#release-highlight" class="anchor" name="release-highlight"&gt;&lt;/a&gt;Release Highlight&lt;/h2&gt;
 &lt;p&gt;Included in this GA are 3 new releases:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Release 0.9.0: Compatible with Spring Cloud Greenwich&lt;/li&gt;
@@ -483,7 +482,7 @@
   &lt;li&gt;Support for automatic passing of Seata transaction contexts when the service caller calls a service through RestTemplate or FeignClient&lt;/li&gt;
   &lt;li&gt;Support for using FeingClient together with Hystrix or Sentinel in rate limiting and service-degradation scenarios&lt;/li&gt;
 &lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-alibaba-dubbo" class="anchor" name="spring-cloud-alibaba-dubbo"&gt;&lt;/a&gt;Spring Cloud Alibaba Dubbo&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://dubbo.apache.org/en-us/index.html"&gt;Apache Dubbo™ (incubating)&lt;/a&gt; is a high-performance, Java-based open-source RPC framework.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://dubbo.apache.org/en-us/index.html"&gt;Apache Dubboï¿½ (incubating)&lt;/a&gt; is a high-performance, Java-based open-source RPC framework.&lt;/p&gt;
 &lt;p&gt;Spring Cloud Alibaba integrated with it: &lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Based on Dubbo Spring Boot 2.7.1 (minimum JDK requirement: Java 8)&lt;/li&gt;
@@ -563,23 +562,23 @@
     <id>tag:spring.io,2019-04-18:3651</id>
     <updated>2019-04-18T11:38:45Z</updated>
     <content type="html">&lt;p&gt;The Spring Cloud Data Flow team is pleased to announce the release of a 2.1.0 M1 milestone-release. Follow the Getting Started guides for running on &lt;a href="http://docs.spring.io/spring-cloud-dataflow/docs/2.1.0.M1/reference/htmlsingle/#getting-started-local"&gt;Local&lt;/a&gt;, &lt;a href="http://docs.spring.io/spring-cloud-dataflow/docs/2.1.0.M1/reference/htmlsingle/#getting-started-cloudfoundry"&gt;Cloud Foundry&lt;/a&gt;, and &lt;a href="http://docs.spring.io/spring-cloud-dataflow/docs/2.1.0.M1/reference/htmlsingle/#getting-started-kubernetes"&gt;Kubernetes&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;What’s new?&lt;/p&gt;
+&lt;p&gt;Whatï¿½s new?&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;SCDF Helm Chart and Apache Kafka&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;With continued interest from the community, as of v2.0.2, we have now added support to toggle between RabbitMQ and Apache Kafka when using SCDF’s helm chart. Though the chart is in the PR status in Helm repository, &lt;a href="http://docs.spring.io/spring-cloud-dataflow/docs/2.1.0.M1/reference/htmlsingle/#_installing_the_spring_cloud_data_flow_server_and_required_services"&gt;you could still try it&lt;/a&gt; out and give us feedback. &lt;/p&gt;
+&lt;p&gt;With continued interest from the community, as of v2.0.2, we have now added support to toggle between RabbitMQ and Apache Kafka when using SCDFï¿½s helm chart. Though the chart is in the PR status in Helm repository, &lt;a href="http://docs.spring.io/spring-cloud-dataflow/docs/2.1.0.M1/reference/htmlsingle/#_installing_the_spring_cloud_data_flow_server_and_required_services"&gt;you could still try it&lt;/a&gt; out and give us feedback. &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Docker Compose and Apache Kafka&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;To continue with the same trend in regards to Apache Kafka, along with regular Apache Kafka binder properties, we have now also added support for Kafka Streams binder properties; likewise, we have switched to use the official Confluent’s Docker image as part of the Docker Compose &lt;a href="http://docs.spring.io/spring-cloud-dataflow/docs/2.1.0.M1/reference/htmlsingle/#getting-started-local-deploying-spring-cloud-dataflow-docker-download"&gt;getting-started experience&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;To continue with the same trend in regards to Apache Kafka, along with regular Apache Kafka binder properties, we have now also added support for Kafka Streams binder properties; likewise, we have switched to use the official Confluentï¿½s Docker image as part of the Docker Compose &lt;a href="http://docs.spring.io/spring-cloud-dataflow/docs/2.1.0.M1/reference/htmlsingle/#getting-started-local-deploying-spring-cloud-dataflow-docker-download"&gt;getting-started experience&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Concurrent Launch Throttling for Tasks&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;With the recent feedback from the community concerning the concurrent task launching algorithm, we have redesigned the approach to decide whether or not Tasks are currently running, and if running, how many are concurrently in running state. A more realistic view of what’s actually happening with Tasks is now possible by querying against the runtime status of the Tasks in the underlying platforms (e.g., Local, Cloud Foundry and Kubernetes). You can read all about the new design and the corner cases from the &lt;a href="http://docs.spring.io/spring-cloud-dataflow/docs/2.1.0.M1/reference/htmlsingle/#spring-cloud-dataflow-task-limit-concurrent-executions"&gt;reference guide&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With the recent feedback from the community concerning the concurrent task launching algorithm, we have redesigned the approach to decide whether or not Tasks are currently running, and if running, how many are concurrently in running state. A more realistic view of whatï¿½s actually happening with Tasks is now possible by querying against the runtime status of the Tasks in the underlying platforms (e.g., Local, Cloud Foundry and Kubernetes). You can read all about the new design and the corner cases from the &lt;a href="http://docs.spring.io/spring-cloud-dataflow/docs/2.1.0.M1/reference/htmlsingle/#spring-cloud-dataflow-task-limit-concurrent-executions"&gt;reference guide&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Deployer Properties as Dropdown&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;A growing number of support cases indicated that it is hard for the developers to discover and then supply the platform-specific deployer properties when deploying streams and tasks. We are fixing that by adding a new dropdown with deployer properties automatically populated based on the platform where SCDF is configured to run. The same also will apply for scenarios when there are 1 or more platforms configured to the single instance of SCDF - dropdown would react to the platform selection. Having this would not only simplify the discovery of how to derive these properties and its purpose but it also automatically creates the necessary prefixes in required by SCDF, so you don’t have to worry about it when deploying streams/tasks. We are rolling it out for Streams in this release and the next milestone will include support for Tasks as well.&lt;/p&gt;
+&lt;p&gt;A growing number of support cases indicated that it is hard for the developers to discover and then supply the platform-specific deployer properties when deploying streams and tasks. We are fixing that by adding a new dropdown with deployer properties automatically populated based on the platform where SCDF is configured to run. The same also will apply for scenarios when there are 1 or more platforms configured to the single instance of SCDF - dropdown would react to the platform selection. Having this would not only simplify the discovery of how to derive these properties and its purpose but it also automatically creates the necessary prefixes in required by SCDF, so you donï¿½t have to worry about it when deploying streams/tasks. We are rolling it out for Streams in this release and the next milestone will include support for Tasks as well.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/50398/56348316-137ab480-61be-11e9-9f92-6607b7ec6fc6.png" alt="scdf-local-deployment-properties-1" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Spring Cloud Data Flow Microsite&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;The SCDF team takes pride is openly communicating with the community in various forums including StackOverflow, Gitter, GitHub, Twitter, and at times in Email and Zoom calls even.&lt;/p&gt;
 &lt;p&gt;In the years of experience working in this model, we have come to learn that providing samples and documenting all the features in the form of a reference-guide alone is not sufficient. While engaging with the community, we tend to write even more workable code-samples and clarify concepts with extra examples. It has happened so much so that we tend to repeat answering for the same questions frequently, too. &lt;/p&gt;
 &lt;p&gt;Adding to this, in the recent &lt;a href="https://gitter.im/spring-cloud/spring-cloud-stream?at=5c3d1b8020b78635b624166c"&gt;Spring Cloud Stream&lt;/a&gt;, &lt;a href="https://gitter.im/spring-cloud/spring-cloud-task?at=5c3deffdf780a1521f1451f1"&gt;Spring Cloud Task&lt;/a&gt;, and &lt;a href="https://gitter.im/spring-cloud/spring-cloud-dataflow?at=5c3def6bf780a1521f144e41"&gt;Spring Cloud Data Flow&lt;/a&gt; developer surveys, it was evident that our samples, docs, and guides need some improvement.&lt;/p&gt;
-&lt;p&gt;We are determined to improve this! The SCDF Team is working on a more hands-on developer guide that goes into the depth of various concepts, features, deployment options, and among many other topics. We are calling it “Spring Cloud Data Flow Microsite” - a standalone application with all the collateral structured to speak to the developer personas more directly. The larger theme for the 2.1.0 release is just the Microsite - more on this topic in the next milestone - stay tuned!&lt;/p&gt;
+&lt;p&gt;We are determined to improve this! The SCDF Team is working on a more hands-on developer guide that goes into the depth of various concepts, features, deployment options, and among many other topics. We are calling it ï¿½Spring Cloud Data Flow Micrositeï¿½ - a standalone application with all the collateral structured to speak to the developer personas more directly. The larger theme for the 2.1.0 release is just the Microsite - more on this topic in the next milestone - stay tuned!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Switched to ZenHub&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;From a product backlog perspective, we have switched and migrated all the GitHub backlog from Waffle to ZenHub (see: &lt;a href="https://waffle.io/"&gt;reasons&lt;/a&gt;). If you’re interested in following along the product release progress, you could install the ZenHub plugin for the web browser and navigate to ZenHub tab in the SCDF GitHub repository. &lt;/p&gt;
+&lt;p&gt;From a product backlog perspective, we have switched and migrated all the GitHub backlog from Waffle to ZenHub (see: &lt;a href="https://waffle.io/"&gt;reasons&lt;/a&gt;). If youï¿½re interested in following along the product release progress, you could install the ZenHub plugin for the web browser and navigate to ZenHub tab in the SCDF GitHub repository. &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Stay in touch&lt;/strong&gt;?&lt;/p&gt;
 &lt;p&gt;As always, we welcome feedback and contributions, so please reach out to us on &lt;a href="https://stackoverflow.com/questions/tagged/spring-cloud-dataflow"&gt;StackOverflow&lt;/a&gt; or &lt;a href="https://github.com/spring-cloud/spring-cloud-dataflow"&gt;GitHub&lt;/a&gt; or via &lt;a href="https://gitter.im/spring-cloud/spring-cloud-dataflow"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;</content>
   </entry>
@@ -663,7 +662,7 @@
     </author>
     <id>tag:spring.io,2019-04-16:3648</id>
     <updated>2019-04-16T19:15:00Z</updated>
-    <content type="html">&lt;p&gt;We are pleased to announce that Spring Cloud Task 2.2.0.M1 is now available on Github and the Pivotal download repository. Many thanks to all of those who contributed to this release.&lt;/p&gt;&lt;h2&gt;&lt;a href="#what-s-new" class="anchor" name="what-s-new"&gt;&lt;/a&gt;What’s New?&lt;/h2&gt;
+    <content type="html">&lt;p&gt;We are pleased to announce that Spring Cloud Task 2.2.0.M1 is now available on Github and the Pivotal download repository. Many thanks to all of those who contributed to this release.&lt;/p&gt;&lt;h2&gt;&lt;a href="#what-s-new" class="anchor" name="what-s-new"&gt;&lt;/a&gt;Whatï¿½s New?&lt;/h2&gt;
 &lt;p&gt;Spring Cloud Task 2.2.0.M1 is intended to be the version of the framework aligned with Spring Boot 2.2.0. Updates from 2.0.x include:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Update all dependencies.&lt;/li&gt;
@@ -680,7 +679,7 @@
     <link rel="alternate" href="https://spring.io/blog/2019/04/16/flight-of-the-flux-2-debugging-caveats" />
     <category term="engineering" label="Engineering" />
     <author>
-      <name>Simon Baslé</name>
+      <name>Simon Baslï¿½</name>
     </author>
     <id>tag:spring.io,2019-04-16:3647</id>
     <updated>2019-04-16T16:45:13Z</updated>
